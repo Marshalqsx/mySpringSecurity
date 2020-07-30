@@ -64,9 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
 	http.authorizeRequests()
-		.antMatchers("/verifycode/**","/auth/mobile").permitAll()
-		// 不进行权限验证的请求或资源(从配置文件中读取)
-//		.anyRequest().permitAll()
+		.antMatchers("/verifycode/**","/auth/mobile").permitAll() // 允许不登陆访问的
+		// .anyRequest().permitAll() // 不进行权限验证的请求或资源(从配置文件中读取)
 		// 其他的需要登陆后才能访问
 		.anyRequest().authenticated()
 		.and()
