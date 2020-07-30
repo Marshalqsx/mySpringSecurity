@@ -80,7 +80,7 @@ public class VerifyCodeController {
 	for (Integer i : random) {
 	    sbf.append(i);
 	}
-	redisUtil.setString(RedisConstant.SMSPREFIX + phone, sbf.toString(), 5, TimeUnit.MINUTES);
+	redisUtil.setString(RedisConstant.SMSPREFIX + phone, sbf.toString(), 10, TimeUnit.MINUTES);
 	log.info("向手机号为：{}的用户发送的短信验证码为：{}", phone, sbf.toString());
 	// TODO 发送短信验证码
     }

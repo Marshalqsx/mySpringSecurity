@@ -3,7 +3,7 @@ package com.yunqi.security.security.provider;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
@@ -34,7 +34,7 @@ public class VerifyCodeAuthenticationProvider extends DaoAuthenticationProvider 
 	String randomStr = req.getParameter("randomStr");
 	String verifyCode = redisUtil.getString(randomStr);
 	if (code == null || verifyCode == null || !code.equals(verifyCode)) {
-	    throw new AuthenticationServiceException("验证码错误");
+	    throw new BadCredentialsException("验证码错误");
 	}
 	super.additionalAuthenticationChecks(userDetails, authentication);
     }
